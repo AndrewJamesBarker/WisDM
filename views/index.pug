@@ -1,0 +1,15 @@
+extends layout 
+
+
+block main-content
+  div.content
+   
+    script(src="/index.js")
+    div
+      h1.page-title Hello! Welcome to Wis-DOM.
+      p Wisdom of the ages, at your finger tips.
+      form(method='post' action='/submit-data')
+      label(for='message') How are you feeling? See what someone famous had to say about it...
+      textarea(name='message' id='message' placeholder="Should I stay, or should I go now?")
+
+      input(type='submit' value='Submit')
