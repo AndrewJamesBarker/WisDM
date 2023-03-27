@@ -4,12 +4,14 @@ extends layout
 block main-content
   div.content
    
-    script(src="/index.js")
+    //- script(src="./index.js")
     div
-      h1.page-title Hello! Welcome to Wis-DOM.
+      h1.page-title Hello! Welcome to DM Wisdom.
       p Wisdom of the ages, at your finger tips.
-      form(method='post' action='/submit-data')
-      label(for='message') How are you feeling? See what someone famous had to say about it...
-      textarea(name='message' id='message' placeholder="Should I stay, or should I go now?")
+      form(method='post' action='/submit-data' name="myForm")
+      label(for='userInput') How are you feeling? See what someone famous had to say about it...
+      textarea(name='userInput' id='userInput' placeholder="Should I stay, or should I go now?")
+      input(type="submit" value="Submit this Form" name="f_submit")
+      script 
+  
 
-      input(type='submit' value='Submit')
