@@ -12,30 +12,11 @@ async function getQuote(url)
   console.log(data);
 }
 
-// async function getQuote()
-// {
-//   let reqUrl = `${quote_url}`;
-//   let response = await fetch(
-//     reqUrl,
-//     {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "h": "quote",
-//         "zenQuote-api-key": process.env.ZENQUOTE_CLIENT_ID
-
-//       }
-//     }
-//     );
-//   return await response.json();
-//   console.log(data);
-// }
-
 module.exports = {
   getQuote,
   quote_url
 }
-// res = getQuote(quote_url);
+
 
 
 

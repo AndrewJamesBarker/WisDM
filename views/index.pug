@@ -8,10 +8,11 @@ block main-content
     div
       h1.page-title Hello! Welcome to DM Wisdom.
       p Wisdom of the ages, at your finger tips.
-      form(method='post' action='/submit-data' name="myForm")
-      label(for='userInput') How are you feeling? See what someone famous had to say about it...
-      textarea(name='userInput' id='userInput' placeholder="Should I stay, or should I go now?")
-      input(type="submit" value="Submit this Form" name="f_submit")
-      script 
-  
-
+        form(method='post' action='/submitInput' name="myForm")
+          label(for='userInput') How are you feeling? Let's see what someone wise had to say about it...
+          textarea(name='userInput' id='userInput' placeholder="Should I stay, or should I go now?")
+          input(type="submit" value="Submit this Form" name="f_submit") 
+      if zen_quotes
+        ul
+          each quote in zen_quotes
+            li #{quote.h}
