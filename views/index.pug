@@ -3,16 +3,12 @@ extends layout
 
 block main-content
   div.content
-   
-    //- script(src="./index.js")
+     
     div
       h1.page-title Hello! Welcome to DM Wisdom.
-      p Wisdom of the ages, at your finger tips.
+      p The wisdom of the ages, at your finger tips.
         form(method='post' action='/submitInput' name="myForm")
-          label(for='userInput') How are you feeling? Let's see what someone wise had to say about it...
-          textarea(name='userInput' id='userInput' placeholder="Should I stay, or should I go now?")
-          input(type="submit" value="Submit this Form" name="f_submit") 
-      if zen_quotes
-        ul
-          each quote in zen_quotes
-            li #{quote.h}
+          label(for='userInput') 
+          textarea(name='userInput' id='userInput')
+          input(type="submit" value="Ask The Sages" name="f_submit" alt="submit your question")     
+      p #{zen_quote}

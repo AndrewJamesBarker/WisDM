@@ -1,20 +1,17 @@
 
-let zenquotes_api_key = process.env.ZENQUOTE_CLIENT_ID;
-
+const zenquotes_api_key = process.env.ZENQUOTE_CLIENT_ID;
 const quote_url = `https://zenquotes.io/api/quotes/${zenquotes_api_key}&keyword=`;
 
-console.log(quote_url);
-
-async function getQuote(url)
+async function getQuote(keyword)
 {
-  const response = await fetch(url);
+  const response = await fetch(quote_url + keyword);
   var data = await response.json();
-  console.log(data);
+  // console.log(data);
+  return data;
 }
 
 module.exports = {
-  getQuote,
-  quote_url
+  getQuote
 }
 
 
