@@ -64,11 +64,11 @@ app.post('/submitInput',async(req,res) => {
    console.log(quoteImg);
 
    if (singleQuote) {
-      res.render("index", {title: "Zen Quote", zen_quote: singleQuote})
+      res.render("index", {title: "Zen Quote", zen_quote: quotes})
     } else {
       res.render("index", {title: "Zen Quote"})
     }
- 
+
  });
 
 // render to page

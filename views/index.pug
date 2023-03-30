@@ -11,4 +11,6 @@ block main-content
           label(for='userInput') 
           textarea(name='userInput' id='userInput')
           input(type="submit" value="Ask The Sages" name="f_submit" alt="submit your question")     
-      p #{zen_quote}
+      p #{zen_quote[0]['q']}
+      p #{zen_quote[0]['a']}
+      
