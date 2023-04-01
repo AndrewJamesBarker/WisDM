@@ -64,7 +64,7 @@ app.post('/submitInput',async(req,res) => {
    console.log(quoteImg);
 
    if (singleQuote) {
-      res.render("index", {title: "Zen Quote", zen_quote: quotes})
+      res.render("index", {title: "Zen Quote", zen_quote: quotes[0]})
     } else {
       res.render("index", {title: "Zen Quote"})
     }

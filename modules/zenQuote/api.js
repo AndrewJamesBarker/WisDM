@@ -1,5 +1,6 @@
 
 const zenquotes_api_key = process.env.ZENQUOTE_CLIENT_ID;
+const openai_api_key = process.env.OPENAI_API_KEY;
 const quote_url = `https://zenquotes.io/api/quotes/${zenquotes_api_key}&keyword=`;
 
 async function getQuote(keyword)
