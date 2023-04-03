@@ -37,10 +37,12 @@ async function getQuoteAndAiKeyword(keywordRequest) {
       temperature: 0.7
     })
   });
+
   const openaiData = await response.json();
   const keyword = openaiData.choices[0].message.content;
 
   // zenquote api call
+  
   const response2 = await fetch(quote_url + keyword);
   var data = await response2.json();
   // console.log(data);
