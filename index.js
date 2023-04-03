@@ -4,7 +4,12 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const openAiApi = require('./modules/zenQuote/openAiApi');
+
 const zenQuote = require("./modules/zenQuote/api");
+
+const openAiZenQuote = require("./modules/zenQuote/AIZen");
+
 const { req } = require("http");
 const { res } = require("express");
 
@@ -35,33 +40,49 @@ app.use(express.json());
 
 //get form data, narrow sentence down to a keyword, append to zenquote api call and render results.
 
-let singleQuote;
-let quoteAuthor;
-let quoteImg;
 
 app.post('/submitInput',async(req,res) => {
    
-   userSentence = req.body['userInput'];
+   let userSentence = req.body['userInput'];
 
-   userInput = keywordSelect(userSentence);
-   var quotes = await zenQuote.getQuote(userInput); 
+   // use js hard coded function to select keyword
 
-   // quotesJSON = res.json(quotes);
-  
-   // var singleQuote = res.json(quotes[0]['h']);
+   // userInput = keywordSelect(userSentence);
+
+   // or, use openai to interpret sentence for keyword
+
+   const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inpiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
+
+   // let testInput = "What is the meaning of life?";
+
+   let KeywordRequest = `analyze ${userSentence} and respond with the most appropriate keyword from ${keywordArray}`
+
+   // test variable
+
+   // let openAiZenResponse = "life";
+
+   // real openAiResponse
+
+   // let openAiResponse = await openAiApi.aiKeyword(openaiKeywordRequest);
+
+   let openAIZenResponse = openAiZenQuote.getQuoteAndAiKeyword(KeywordRequest);
+
+   console.log('--------------------------------------')
+
+   // console.log(openAIZenResponse);
+   // console.log(KeywordRequest);
+
+   let quotes = await openAIZenResponse;
+
+   // console.log(quotes);
+
+   let singleQuote;
+   let quoteAuthor;
+   let quoteImg;
 
    singleQuote = quotes[0]['q'];
    quoteAuthor = quotes[0]['a'];
    quoteImg = quotes[0]['i'];
-
-   // if (singleQuote) {
-   //   res.redirect("/", {title: "Zen Quote", zen_quote: singleQuote})
-   // } else {
-   //   res.redirect("/", {title: "Zen Quote"})
-   // }
-   console.log(singleQuote);
-   console.log(quoteAuthor);
-   console.log(quoteImg);
 
    if (singleQuote) {
       res.render("index", {title: "Zen Quote", zen_quote: quotes[0]})
@@ -73,29 +94,12 @@ app.post('/submitInput',async(req,res) => {
 
 // render to page
 
-// app.get("/", (req, res) => {
-//    if (singleQuote) {
-//            res.render("/", {title: "Zen Quote", zen_quote: singleQuote})
-//          } else {
-//            res.render("/", {title: "Zen Quote"})
-//          }
-//    });
-
-
-// app.get("/", async(req, res) => {
-//    let quote = zenQuote.getQuote(zenQuote.quote_url + keywordInput);
-//    console.log(quote);
-//    res.render("index", {title: "Zen Quote", 
-//    zen_quote: quote})
-// });
-
-
 // app.get("/", async(req, res) => {
    
 //    await singleQuote;
    
 //    if (singleQuote) {
-//      res.render("/", {title: "Zen Quote", zen_quote: singleQuote})
+//      res.render("/", {title: "Zen Quote", zen_quote: quotes[0]})
 //    } else {
 //      res.render("/", {title: "Zen Quote"})
 //    }
@@ -105,6 +109,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");  
 
    //set up server listening
+
 app.listen(port, () => {
 console.log(`Listening on http://localhost:${port}`);
 });
