@@ -5,6 +5,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
+
 const openAiApi = require('./modules/zenQuote/openAiApi');
 
 const zenQuote = require("./modules/zenQuote/api");
@@ -38,7 +39,7 @@ app.get("/", (req, res) => { res.render("index", { title: "Home" });
 
 const bodyParser = require('body-parser');
 
-// const { keywordSelect } = require("./modules/keywordSelect/keywordSelect");
+const { keywordSelect } = require("./modules/keywordSelect/keywordSelect");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -50,7 +51,7 @@ app.post('/submitInput',async(req,res) => {
    
    let userSentence = req.body['userInput'];
 
-   const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inpiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
+   const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inspiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
 
    // let testInput = "What is the meaning of life?";
 
@@ -60,37 +61,60 @@ app.post('/submitInput',async(req,res) => {
 
    // let openAiZenResponse = "life";
 
-   // real openAiZenResponse
+  // using function with zen api instead of openai (fallback, and better for when working on
+  // styling etc)
 
-   let openAIZenResponse = openAiZenQuote.getQuoteAndAiKeyword(KeywordRequest);
+   let hardCodeKeyword = keywordSelect(userSentence);
 
-   // console.log('--------------------------------------')
+   let zenResponse = zenQuote.getQuote(hardCodeKeyword);
 
-   // console.log(openAIZenResponse);
-   // console.log(KeywordRequest);
+   let quotesAlt = await zenResponse;
 
-   let quotes = await openAIZenResponse;
+          // real openAiZenResponse
 
-   console.log(quotes[0]);
+  let openAIZenResponse = openAiZenQuote.getQuoteAndAiKeyword(KeywordRequest);
 
-  //  let singleQuote;
-  //  let quoteAuthor;
-  //  let quoteImg;
+  let quotes = await openAIZenResponse;
 
-   singleQuote = quotes[0];
-  //  quoteAuthor = quotes[0]['a'];
-  //  quoteImg = quotes[0]['i'];
+  // console.log(quotes[0]);
 
-   if (singleQuote) {
-      res.render("index", {title: "Zen Quote", zen_quote: singleQuote})
-    } else {
-      res.render("index", {title: "Zen Quote"})
-    }
 
+  // keywordSelect function variables
+
+  let singleQuoteAlt;
+  let singleQuoteAuthorAlt;
+  singleQuoteAlt = quotesAlt[0]['q'];
+  singleQuoteAuthorAlt = quotesAlt[0]['a'];
+
+  // AI variables
+
+  let singleQuoteAi;
+  let singleQuoteAuthorAi;
+  singleQuoteAi = quotes[0]['q'];
+  singleQuoteAuthorAi = quotes[0]['a'];
+
+
+  // console.log(singleQuoteAi);
+  // console.log(singleQuoteAlt);
+  // console.log(singleQuoteAuthorAlt);
+
+  // openai can be glitchy with certian keywords (ie 'life') so have a failsafe backup using the keywordSelect function.
+
+  if (singleQuoteAi['q'] === "No items found for the given request.") {
+    res.render("index", {title: "Zen Quote", zen_quote: singleQuoteAlt, quote_author: singleQuoteAuthorAlt});
+  }
+
+  if (singleQuoteAi) {
+    res.render("index", {title: "Zen Quote", zen_quote: singleQuoteAi, quote_author: singleQuoteAuthorAi});
+  }
+  else {
+    res.render("index", {title: "Zen Quote"});
+  }
  });
 
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");  
+app.set("view engine", "pug");
+
 
    // set up server listening
 

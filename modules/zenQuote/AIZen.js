@@ -1,15 +1,23 @@
 const zenquotes_api_key = process.env.ZENQUOTE_CLIENT_ID;
 const quote_url = `https://zenquotes.io/api/quotes/${zenquotes_api_key}&keyword=`;
 
+const { keywordSelect } = require("../keywordSelect/keywordSelect");
+
 const { Configuration, OpenAIApi } = require("openai");
 
 const openai_api_key = process.env.OPENAI_API_KEY;
-const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inpiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
+
+const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inspiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
+
 const configuration = new Configuration({
+
   organization: "org-r47BJD5uMTpizL52JRk8is7d",
   openai_api_key: process.env.OPENAI_API_KEY,
+
 });
+
 const openai = new OpenAIApi(configuration);
+
 const endpoint = 'https://api.openai.com/v1/chat/completions';
 
 async function getQuoteAndAiKeyword(keywordRequest) {
@@ -32,7 +40,7 @@ async function getQuoteAndAiKeyword(keywordRequest) {
           content: `${keywordArray}`
         },
       ],
-      temperature: 0.7
+      temperature: 0.2
     })
   });
 
@@ -41,9 +49,17 @@ async function getQuoteAndAiKeyword(keywordRequest) {
 
   // zenquote api call
   
-  const response2 = await fetch(quote_url + keyword);
+  // console.log("keyword", keyword);
+
+// using keywordSelect function extract soley the keyword from openai's sometimes wordy responses.
+
+  let cleanedKeyword = keywordSelect(keyword);
+
+  const response2 = await fetch(quote_url + cleanedKeyword);
   var data = await response2.json();
-  // console.log(data);
+
+  // console.log("this is the zenquotes", data);
+
   return data;
 }
 

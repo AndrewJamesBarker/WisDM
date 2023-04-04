@@ -3,15 +3,16 @@ doctype html
 html 
   head
     meta(charset="utf-8")
-    title #{title} | Test Website
+    title #{title} | WisDM
     block scripts 
       link(rel="stylesheet", type="text/css", href="/styles.css")
+      link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
   body
     header#header 
       .header-content   
         h2#site-name 
-          a(href="#") DM Wisdom 
-    main#main 
+          a(href="#") WisDM
+    main
       block main-content 
     footer#footer 
       p &copy; Copyright Andrew Barker, 2023.

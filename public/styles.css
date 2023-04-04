@@ -1,8 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  }
 
 body {
-  background-color: aliceblue;
+  background-color: #1F2937;
+  margin:0 auto; 
+}
+
+div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#header {
+  padding-top: 1em;
+  padding-left: 2em;
+}
+
+#main {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+}
+
+/* #column {
+  display: flex;
+  flex-direction: column;
+} */
+
+#site-name a {
+  color: #edf2f4;
+  text-decoration: none;
 }
 
 textarea {
+  border: none;
+  border-radius: 4px;
+  font-size: 1.3em;
+  display: inline-block;
+  height: 7em;
+  width: 27em;
+  margin: 1em;
+}
+.input-button
+{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1em;
+  accent-color: #0cb9bb;
+  color: #edf2f4;
+  background-color: #0cb9bb;
   display: block;
+  padding: 1em;
+  border: none;
+  border-radius: 8px;
+}
+
+
+.input-button:active {
+  box-shadow: 0px 0px 1px 1px #edf2f4;
+}
+
+.input-button:hover {
+  cursor: pointer;
+}
+
+/* .center {
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.page-title {
+  font-size: 4.5em;
+}
+
+p {
+  color: #edf2f4;
+  font-size: 1.8em;
+}
+
+h1 {
+  color: #0cb9bb;
+  padding: 0%;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+a::before {
+  color: #0cb9bb;
+}
+
+a::after {
+  color: #edf2f4;
+}
+
+#quote-result {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #0cb9bb;
+  font-size: 1.8em;
+  padding-top: 3em;
+  max-width: 50%;
+  padding: 2em;
+}
+
+
+#footer p {
+  font-size: 1em;
+  padding: 1em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 540px) {
+
+  p {
+    color: #edf2f4;
+    font-size: 1em;
+  }
+  
+  .page-title {
+    font-size: 2.5em;
+  }
+  h1 {
+    color: #0cb9bb;
+    padding: .1%;
+  }
+  
+  h2 {
+    font-size: 1.1em;
+  }
+  textarea {
+    border: none;
+    border-radius: 4px;
+    font-size: 1.3em;
+    display: inline-block;
+    height: 7em;
+    max-width: 78%;
+    margin: 1em;
+    padding: 3px;
+  }
+  .input-button
+{
+  font-size: .9em;
+  accent-color: #0cb9bb;
+  color: #edf2f4;
+  background-color: #0cb9bb;
+  display: block;
+  padding: .6em;
+  border: none;
+  border-radius: 8px;
+}
 }
