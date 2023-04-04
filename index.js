@@ -52,26 +52,23 @@ app.post('/submitInput',async(req,res) => {
 
    const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inpiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
 
-   // let testInput = "What is the meaning of life?";
+
+   // request prompt for openai
 
    let KeywordRequest = `analyze ${userSentence} and respond with the most appropriate keyword from ${keywordArray}`
 
-   // test variable
-
-   // let openAiZenResponse = "life";
-
-   // real openAiZenResponse
+   // openAiZenResponse
 
    let openAIZenResponse = openAiZenQuote.getQuoteAndAiKeyword(KeywordRequest);
 
    // console.log('--------------------------------------')
 
-   // console.log(openAIZenResponse);
-   // console.log(KeywordRequest);
+ 
+   console.log(KeywordRequest);
 
    let quotes = await openAIZenResponse;
 
-   // console.log(quotes);
+  //  console.log(quotes);
 
    let singleQuote;
    let quoteAuthor;
