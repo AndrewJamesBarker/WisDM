@@ -52,34 +52,37 @@ app.post('/submitInput',async(req,res) => {
 
    const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inpiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
 
-
-   // request prompt for openai
+   // let testInput = "What is the meaning of life?";
 
    let KeywordRequest = `analyze ${userSentence} and respond with the most appropriate keyword from ${keywordArray}`
 
-   // openAiZenResponse
+   // test variable
+
+   // let openAiZenResponse = "life";
+
+   // real openAiZenResponse
 
    let openAIZenResponse = openAiZenQuote.getQuoteAndAiKeyword(KeywordRequest);
 
    // console.log('--------------------------------------')
 
- 
-   console.log(KeywordRequest);
+   // console.log(openAIZenResponse);
+   // console.log(KeywordRequest);
 
    let quotes = await openAIZenResponse;
 
-  //  console.log(quotes);
+   console.log(quotes[0]);
 
-   let singleQuote;
-   let quoteAuthor;
-   let quoteImg;
+  //  let singleQuote;
+  //  let quoteAuthor;
+  //  let quoteImg;
 
-   singleQuote = quotes[0]['q'];
-   quoteAuthor = quotes[0]['a'];
-   quoteImg = quotes[0]['i'];
+   singleQuote = quotes[0];
+  //  quoteAuthor = quotes[0]['a'];
+  //  quoteImg = quotes[0]['i'];
 
    if (singleQuote) {
-      res.render("index", {title: "Zen Quote", zen_quote: quotes[0]})
+      res.render("index", {title: "Zen Quote", zen_quote: singleQuote})
     } else {
       res.render("index", {title: "Zen Quote"})
     }

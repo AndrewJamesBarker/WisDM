@@ -1,4 +1,6 @@
 extends layout 
+
+
 block main-content
   div.content
      
@@ -7,7 +9,8 @@ block main-content
       p The wisdom of the ages, at your finger tips.
         form(method='post' action='/submitInput' name="myForm")
           label(for='userInput') 
-          textarea(name='userInput' id='userInput' maxlength="120")
-          input(type="submit" value="Ask The Sages" name="f_submit" alt="submit your question")     
+          textarea(name='userInput' id='userInput')
+          input(type="submit" value="Ask The Sages" name="f_submit" alt="submit your question")
+
       p #{zen_quote['q']}
       p #{zen_quote['a']}

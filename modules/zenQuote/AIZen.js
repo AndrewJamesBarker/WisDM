@@ -4,12 +4,10 @@ const quote_url = `https://zenquotes.io/api/quotes/${zenquotes_api_key}&keyword=
 const { Configuration, OpenAIApi } = require("openai");
 
 const openai_api_key = process.env.OPENAI_API_KEY;
-
 const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inpiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
-
 const configuration = new Configuration({
-    organization: "org-r47BJD5uMTpizL52JRk8is7d",
-    openai_api_key: process.env.OPENAI_API_KEY,
+  organization: "org-r47BJD5uMTpizL52JRk8is7d",
+  openai_api_key: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 const endpoint = 'https://api.openai.com/v1/chat/completions';
