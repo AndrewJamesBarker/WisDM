@@ -78,7 +78,6 @@ app.post('/submitInput',async(req,res) => {
 
   // console.log(quotes[0]);
 
-
   // keywordSelect function variables
 
   let singleQuoteAlt;
