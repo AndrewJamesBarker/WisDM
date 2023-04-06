@@ -29,7 +29,6 @@ app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname, "public")));
 
-
 // page routes
 
 app.get("/", (req, res) => { res.render("index", { title: "Home" });
@@ -38,16 +37,17 @@ app.get("/", (req, res) => { res.render("index", { title: "Home" });
 // parse json
 
 const bodyParser = require('body-parser');
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// custum function to parse keywords
 
 const { keywordSelect } = require("./modules/keywordSelect/keywordSelect");
 
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(express.json());
 
 // get form data, narrow sentence down to a keyword, append keyword in api call, and render zenquote results.
 
-app.post('/submitInput',async(req,res) => {
+app.post('/',async(req,res) => {
    
    let userSentence = req.body['userInput'];
 
@@ -98,22 +98,23 @@ app.post('/submitInput',async(req,res) => {
   // console.log(singleQuoteAuthorAlt);
 
   // openai can be glitchy with certian keywords (ie 'life') so have a failsafe backup using the keywordSelect function.
+  // the keyword select function also filters the open ai responses in order to remove extra text returned by openai
+
 
   if (singleQuoteAi['q'] === "No items found for the given request.") {
-    res.render("index", {title: "Zen Quote", zen_quote: singleQuoteAlt, quote_author: singleQuoteAuthorAlt});
+    res.render("index", { title: "Home", zen_quote: singleQuoteAlt, quote_author: singleQuoteAuthorAlt });
   }
 
   if (singleQuoteAi) {
-    res.render("index", {title: "Zen Quote", zen_quote: singleQuoteAi, quote_author: singleQuoteAuthorAi});
+    res.render("index", { title: "Home", zen_quote: singleQuoteAi, quote_author: singleQuoteAuthorAi });
   }
   else {
-    res.render("index", {title: "Zen Quote"});
+    res.render("index", { title: "Home"});
   }
  });
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-
 
    // set up server listening
 
