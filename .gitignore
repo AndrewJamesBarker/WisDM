@@ -4,3 +4,6 @@ node_modules
 
 private.md
 
+
+# Local Netlify folder
+.netlify
