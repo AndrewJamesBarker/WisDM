@@ -69,7 +69,7 @@ app.post('/',async(req,res) => {
 
    let quotesAlt = await zenResponse;
 
-          // real openAiZenResponse
+  // openAiZenResponse
 
   let openAIZenResponse = openAiZenQuote.getQuoteAndAiKeyword(KeywordRequest);
 
@@ -111,9 +111,6 @@ app.post('/',async(req,res) => {
     res.render("index", { title: "Home"});
   }
  });
-
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
 
    // set up server listening
 
