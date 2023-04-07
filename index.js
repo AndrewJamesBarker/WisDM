@@ -44,7 +44,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const { keywordSelect } = require("./modules/keywordSelect/keywordSelect");
 
-
 // get form data, narrow sentence down to a keyword, append keyword in api call, and render zenquote results.
 
 app.post('/',async(req,res) => {
