@@ -5,8 +5,6 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const netlify = require("netlify");
-netlify.config();
 
 const openAiApi = require('./modules/zenQuote/openAiApi');
 
