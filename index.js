@@ -92,7 +92,6 @@ app.post('/',async(req,res) => {
   singleQuoteAi = quotes[0]['q'];
   singleQuoteAuthorAi = quotes[0]['a'];
 
-
   // console.log(singleQuoteAi);
   // console.log(singleQuoteAlt);
   // console.log(singleQuoteAuthorAlt);
