@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // page routes
 
-app.get("/", (req, res) => { res.render("index", { title: "Home" });
+app.get("/", (req, res) => { res.render("index", { title: "WisDM" });
   });
 
 // parse json
