@@ -105,11 +105,11 @@ app.post('/',async(req,res) => {
 
 
   if (singleQuoteAi['q'] === "No items found for the given request.") {
-    res.render("index", { title: "Home", zen_quote: singleQuoteAlt, quote_author: singleQuoteAuthorAlt });
+    res.render("index", { title: "Home", zen_quote: singleQuoteAlt, quote_author: singleQuoteAuthorAlt, userSentence: userSentence });
   }
 
   if (singleQuoteAi) {
-    res.render("index", { title: "Home", zen_quote: singleQuoteAi, quote_author: singleQuoteAuthorAi });
+    res.render("index", { title: "Home", zen_quote: singleQuoteAi, quote_author: singleQuoteAuthorAi, userSentence: userSentence });
   }
   else {
     res.render("index", { title: "Home"});

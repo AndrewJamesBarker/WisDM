@@ -1,6 +1,4 @@
 extends layout 
-
-
 block main-content
   div#main
     div
@@ -12,7 +10,7 @@ block main-content
       div
         form(method='post' action='/' name="myForm")
           label(for='userInput') 
-          textarea.center(name='userInput' id='userInput' placeholder="Ask me anything..." maxlength="120")
+          textarea.center(name='userInput' id='userInput' placeholder= (userSentence ? userSentence : 'Ask me anything...') maxlength="120")
           input.input-button(type="submit" value="Ask The Sages" name="f_submit" alt="submit your question")     
         if (zen_quote)
           p#quote-result '#{zen_quote}'
