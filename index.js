@@ -40,6 +40,10 @@ const bodyParser = require('body-parser');
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// favicon 
+
+app.use('/favicon.ico', express.static('public/images/favicon.ico'));
+
 // custum function to parse keywords
 
 const { keywordSelect } = require("./modules/keywordSelect/keywordSelect");
