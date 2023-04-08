@@ -45,8 +45,9 @@ async function getQuoteAndAiKeyword(keywordRequest) {
   });
 
   const openaiData = await response.json();
+  // console.log(openaiData);
   const keyword = openaiData.choices[0].message.content;
-
+  // console.log(keyword);
   // zenquote api call
   
   // console.log("keyword", keyword);
