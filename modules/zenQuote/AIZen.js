@@ -7,7 +7,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 const openai_api_key = process.env.OPENAI_API_KEY;
 
-const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inspiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
+const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","excellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inspiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
 
 const configuration = new Configuration({
 

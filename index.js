@@ -55,7 +55,7 @@ app.post('/',async(req,res) => {
    
    let userSentence = req.body['userInput'];
 
-   const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","exellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inspiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
+   const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","excellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inspiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
 
    // let testInput = "What is the meaning of life?";
 
