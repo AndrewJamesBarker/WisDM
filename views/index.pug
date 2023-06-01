@@ -1,20 +1,25 @@
-extends layout 
+extends layout
+
 block main-content
   div#main
     div
-     
       div
-        p.page-title Welcome to  
+        p.page-title Welcome to
         h1.page-title WisDM.
-        p#white-text The wisdom of the ages, at your finger tips.
+        p#white-text The wisdom of the ages, at your fingertips.
+
       div
         form(method='post' action='/' name="myForm")
           label(for='userInput') 
           textarea.center(name='userInput' id='userInput' placeholder= (userSentence ? userSentence : 'Ask me anything...') maxlength="120")
           input.input-button(type="submit" value="Ask The Sages" name="f_submit" alt="submit your question")     
+
         if (zen_quote)
           p#quote-result '#{zen_quote}'
           p#quoteAuthor #{quote_author}
         else
           p#quote-result
             | Please enter a question to receive your zen quote.
+
+    // Buy Me a Coffee widget script
+    script(data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="thelvd4" data-description="Support me on Buy me a coffee!" data-message="Hope this brings you good vibes! Spot me a beer?" data-color="#FF813F" data-position="Right" data-x_margin="18" data-y_margin="18")

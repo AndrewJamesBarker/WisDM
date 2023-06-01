@@ -6,11 +6,17 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 
+const fs = require('fs');
+
 const openAiApi = require('./modules/zenQuote/openAiApi');
 
-const zenQuote = require("./modules/zenQuote/api");
+                                      // remove zenquote api dependency
+
+// const zenQuote = require("./modules/zenQuote/api");
 
 const openAiZenQuote = require("./modules/zenQuote/AIZen");
+
+const { jsonSelect } = require("./modules/jsonSelect/jsonSelect");
 
 const { req } = require("http");
 const { res } = require("express");
@@ -49,6 +55,7 @@ app.use('/favicon.ico', express.static('public/images/favicon.ico'));
 const { keywordSelect } = require("./modules/keywordSelect/keywordSelect");
 
 
+
 // get form data, narrow sentence down to a keyword, append keyword in api call, and render zenquote results.
 
 app.post('/',async(req,res) => {
@@ -65,14 +72,18 @@ app.post('/',async(req,res) => {
 
    // let openAiZenResponse = "life";
 
+                                              // remove zenquote api dependency
+
   // using function with zen api instead of openai (fallback, and better for when working on
   // styling etc)
 
-   let hardCodeKeyword = keywordSelect(userSentence);
+  //  let hardCodeKeyword = keywordSelect(userSentence);
 
-   let zenResponse = zenQuote.getQuote(hardCodeKeyword);
+  //  let zenResponse = zenQuote.getQuote(hardCodeKeyword);
 
-   let quotesAlt = await zenResponse;
+
+
+  //  let quotesAlt = await zenResponse;
 
           // real openAiZenResponse
 
@@ -80,33 +91,35 @@ app.post('/',async(req,res) => {
 
   let quotes = await openAIZenResponse;
 
-  // console.log(quotes[0]);
+  // Generate a random index
+
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+
+                                          // remove zenquote api dependency
 
   // keywordSelect function variables
 
-  let singleQuoteAlt;
-  let singleQuoteAuthorAlt;
-  singleQuoteAlt = quotesAlt[0]['q'];
-  singleQuoteAuthorAlt = quotesAlt[0]['a'];
-
+  // let singleQuoteAlt;
+  // let singleQuoteAuthorAlt;
+  // singleQuoteAlt = quotesAlt[0]['q'];
+  // singleQuoteAuthorAlt = quotesAlt[0]['a'];
+ 
   // AI variables
 
   let singleQuoteAi;
   let singleQuoteAuthorAi;
-  singleQuoteAi = quotes[0]['q'];
-  singleQuoteAuthorAi = quotes[0]['a'];
+  singleQuoteAi = quotes[randomIndex]['q'];
+  singleQuoteAuthorAi = quotes[randomIndex]['a'];
 
-  // console.log(singleQuoteAi);
-  // console.log(singleQuoteAlt);
-  // console.log(singleQuoteAuthorAlt);
 
   // openai can be glitchy with certian keywords (ie 'life') so have a failsafe backup using the keywordSelect function.
   // the keyword select function also filters the open ai responses in order to remove extra text returned by openai
 
+// remove zenquote api dependency
 
-  if (singleQuoteAi['q'] === "No items found for the given request.") {
-    res.render("index", { title: "Home", zen_quote: singleQuoteAlt, quote_author: singleQuoteAuthorAlt, userSentence: userSentence });
-  }
+  // if (singleQuoteAi['q'] === "No items found for the given request.") {
+  //   res.render("index", { title: "Home", zen_quote: singleQuoteAlt, quote_author: singleQuoteAuthorAlt, userSentence: userSentence });
+  // }
 
   if (singleQuoteAi) {
     res.render("index", { title: "Home", zen_quote: singleQuoteAi, quote_author: singleQuoteAuthorAi, userSentence: userSentence });
