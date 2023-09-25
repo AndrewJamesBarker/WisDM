@@ -1,1 +1,3 @@
-App that interprets user imput and responds with an appropriate Zen Quote response.
+#WisDM
+
+App that interprets user input and responds with an appropriate Zen Quote response.
