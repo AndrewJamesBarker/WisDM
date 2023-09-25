@@ -14,7 +14,6 @@ quote within that keyword directory.
 * Open AI API
 * node.js
 
-
 ### Check out the deployment! ###
 
 [Link to WisDM](https://wisdm.vercel.app/)
