@@ -6,6 +6,15 @@ App that interprets user input and responds with an appropriate Zen Quote respon
 * After identifying the closest keyword match, it uses the selected keyword to randomly select a
 quote within that keyword directory.
 
-## Check out the deployment! ##
+## Tools and languages ##
+
+* React
+* CSS & JS
+* pug
+* Open AI API
+* node.js
+
+
+### Check out the deployment! ###
 
 [Link to WisDM](https://wisdm.vercel.app/)
