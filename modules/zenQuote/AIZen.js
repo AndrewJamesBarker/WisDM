@@ -9,6 +9,7 @@ const quote_url = `https://zenquotes.io/api/quotes/${zenquotes_api_key}&keyword=
 
 const OpenAI = require("openai");
 
+// Dont bother using, breaks code
 const openai_api_key = process.env.OPENAI_API_KEY;
 
 const keywordArray = [
