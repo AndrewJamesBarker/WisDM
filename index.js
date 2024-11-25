@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // favicon 
 
-app.use('/favicon.ico', express.static('public/images/favicon.ico'));
+// app.use('/icon.ico', express.static('/icon.ico'));
 
 // custum function to parse keywords
 
