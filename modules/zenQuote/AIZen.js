@@ -8,43 +8,32 @@ const { jsonSelect } = require("../jsonSelect/jsonSelect");
 const zenquotes_api_key = process.env.ZENQUOTE_CLIENT_ID;
 const quote_url = `https://zenquotes.io/api/quotes/${zenquotes_api_key}&keyword=`;
 
-const { Configuration, OpenAIApi } = require("openai");
+const { OpenAIApi } = require("openai");
 
 const openai_api_key = process.env.OPENAI_API_KEY;
 
 const keywordArray = ["anxiety","change","choice","confidence","courage","dreams","excellence","failure","fairness","fear","forgiveness","freedom","future","happiness","inspiration","kindness","leadership","life","living","love","pain","past","success","time","today","truth","work"];
 
-const configuration = new Configuration({
-  organization: "org-r47BJD5uMTpizL52JRk8is7d",
-  openai_api_key: process.env.OPENAI_API_KEY,
-});
+// const configuration = new Configuration({
+//   organization: "org-r47BJD5uMTpizL52JRk8is7d",
+//   openai_api_key: process.env.OPENAI_API_KEY,
+// });
 
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const endpoint = 'https://api.openai.com/v1/chat/completions';
 
 async function getQuoteAndAiKeyword(keywordRequest) {
   // openai api call
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${openai_api_key}`
-    },
-    body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "user",
-          content: keywordRequest
-        },
-        {
-          role: "user",
-          content: `${keywordArray}`
-        },
-      ],
-      temperature: 0.2
-    })
+  const response = await openai.chat.completion.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      { role: "user", content: keywordRequest },
+      { role: "user", content: `${keywordArray}` },
+    ],
+    temperature: 0.2,
   });
 
   const openaiData = await response.json();

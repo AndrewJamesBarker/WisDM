@@ -22,7 +22,7 @@
     "fs": "^0.0.1-security",
     "modules": "^0.4.0",
     "node": "^19.8.1",
-    "openai": "^3.2.1",
+    "openai": "^4.73.0",
     "pug": "^3.0.2"
   },
   "devDependencies": {
