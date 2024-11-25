@@ -20,14 +20,14 @@ const keywordArray = ["anxiety","change","choice","confidence","courage","dreams
 // });
 
 const openai = new OpenAI({
-  apiKey: openai_api_key,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const endpoint = 'https://api.openai.com/v1/chat/completions';
 
 async function getQuoteAndAiKeyword(keywordRequest) {
   // openai api call
-  const response = await openai.chat.create({
+  const response = await openai.chat.completion.create({
     model: "gpt-3.5-turbo",
     messages: [
       { role: "user", content: keywordRequest },
