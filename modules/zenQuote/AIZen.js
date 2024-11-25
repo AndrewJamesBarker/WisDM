@@ -8,7 +8,7 @@ const { jsonSelect } = require("../jsonSelect/jsonSelect");
 const zenquotes_api_key = process.env.ZENQUOTE_CLIENT_ID;
 const quote_url = `https://zenquotes.io/api/quotes/${zenquotes_api_key}&keyword=`;
 
-const { OpenAIApi } = require("openai");
+const OpenAI = require("openai");
 
 const openai_api_key = process.env.OPENAI_API_KEY;
 
