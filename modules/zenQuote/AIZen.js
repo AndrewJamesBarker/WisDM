@@ -20,7 +20,7 @@ const keywordArray = ["anxiety","change","choice","confidence","courage","dreams
 // });
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: openai_api_key,
 });
 
 const endpoint = 'https://api.openai.com/v1/chat/completions';
