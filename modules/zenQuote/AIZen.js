@@ -27,7 +27,7 @@ const endpoint = 'https://api.openai.com/v1/chat/completions';
 
 async function getQuoteAndAiKeyword(keywordRequest) {
   // openai api call
-  const response = await openai.chat.completion.create({
+  const response = await openai.chat.create({
     model: "gpt-3.5-turbo",
     messages: [
       { role: "user", content: keywordRequest },
